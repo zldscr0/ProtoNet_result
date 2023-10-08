@@ -1,0 +1,76 @@
+2023-10-08 20:36:39,199 [INFO] core.test: {'data_root': '/home/bzx_yjy/FS/miniImageNet--ravi', 'image_size': 84, 'use_memory': False, 'augment': True, 'augment_times': 1, 'augment_times_query': 1, 'workers': 8, 'dataloader_num': 1, 'device_ids': '0,1', 'n_gpu': 2, 'seed': 2147483647, 'deterministic': True, 'port': 43317, 'log_name': None, 'log_level': 'info', 'log_interval': 100, 'log_paramerter': False, 'result_root': './results', 'save_interval': 10, 'save_part': ['emb_func'], 'tag': None, 'epoch': 50, 'test_epoch': 5, 'parallel_part': ['emb_func'], 'pretrain_path': None, 'resume': False, 'way_num': 5, 'shot_num': 1, 'query_num': 15, 'test_way': 5, 'test_shot': 1, 'test_query': 15, 'episode_size': 2, 'train_episode': 10000, 'test_episode': 600, 'batch_size': 128, 'val_per_epoch': 1, 'optimizer': {'kwargs': {'lr': 0.01}, 'name': 'SGD', 'other': None}, 'lr_scheduler': {'kwargs': {'gamma': 1.0, 'step_size': 20}, 'name': 'StepLR'}, 'warmup': 0, 'includes': ['headers/data.yaml', 'headers/device.yaml', 'headers/misc.yaml', 'headers/model.yaml', 'headers/optimizer.yaml', 'classifiers/Proto.yaml', 'backbones/resnet12.yaml'], 'backbone': {'kwargs': {'is_feature': False, 'is_flatten': True, 'last_pool': True, 'leaky_relu': False, 'negative_slope': 0.2}, 'name': 'Conv64F'}, 'classifier': {'kwargs': None, 'name': 'ProtoNet'}, 'rank': 0, 'tb_scale': 16.666666666666668}
+2023-10-08 20:36:39,236 [INFO] core.test: ProtoNet(
+  (emb_func): Conv64F(
+    (layer1): Sequential(
+      (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU(inplace=True)
+      (3): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    )
+    (layer2): Sequential(
+      (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU(inplace=True)
+      (3): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    )
+    (layer3): Sequential(
+      (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU(inplace=True)
+    )
+    (layer3_maxpool): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (layer4): Sequential(
+      (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU(inplace=True)
+    )
+    (layer4_pool): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+  )
+  (proto_layer): ProtoLayer()
+  (loss_func): CrossEntropyLoss()
+)
+2023-10-08 20:36:39,245 [INFO] core.test: Trainable params in the model: 113088.
+2023-10-08 20:36:39,247 [INFO] core.test: Loading the state dict from ./results/ProtoNet-miniImageNet--ravi-Conv64F-5-1-Oct-08-2023-09-49-23/checkpoints/model_best.pth.
+2023-10-08 20:36:39,301 [INFO] core.test: load 12000 test image with 20 label.
+2023-10-08 20:36:48,828 [INFO] core.test: ============ Testing on the test set ============
+2023-10-08 20:37:02,418 [INFO] core.test: Epoch-(0): [100/600]	Time 0.016 (0.271)	Calc 0.013 (0.224)	Data 0.001 (0.045)	Acc@1 49.333 (44.640)
+2023-10-08 20:37:06,886 [INFO] core.test: Epoch-(0): [200/600]	Time 0.262 (0.180)	Calc 0.258 (0.155)	Data 0.001 (0.023)	Acc@1 46.667 (44.667)
+2023-10-08 20:37:10,980 [INFO] core.test: Epoch-(0): [300/600]	Time 0.018 (0.147)	Calc 0.013 (0.117)	Data 0.001 (0.028)	Acc@1 42.667 (44.702)
+2023-10-08 20:37:15,867 [INFO] core.test: Epoch-(0): [400/600]	Time 0.269 (0.135)	Calc 0.265 (0.103)	Data 0.002 (0.030)	Acc@1 48.000 (44.973)
+2023-10-08 20:37:20,067 [INFO] core.test: Epoch-(0): [500/600]	Time 0.016 (0.124)	Calc 0.013 (0.095)	Data 0.001 (0.027)	Acc@1 38.667 (44.872)
+2023-10-08 20:37:24,774 [INFO] core.test: Epoch-(0): [600/600]	Time 0.237 (0.119)	Calc 0.235 (0.094)	Data 0.001 (0.023)	Acc@1 56.667 (45.133)
+2023-10-08 20:37:24,782 [INFO] core.test: Test Accuracy: 45.133	 h: 0.800
+2023-10-08 20:37:24,784 [INFO] core.test: ============ Testing on the test set ============
+2023-10-08 20:37:28,811 [INFO] core.test: Epoch-(1): [100/600]	Time 0.016 (0.080)	Calc 0.013 (0.077)	Data 0.001 (0.001)	Acc@1 50.000 (44.800)
+2023-10-08 20:37:33,499 [INFO] core.test: Epoch-(1): [200/600]	Time 0.231 (0.087)	Calc 0.227 (0.083)	Data 0.003 (0.002)	Acc@1 48.000 (45.333)
+2023-10-08 20:37:38,155 [INFO] core.test: Epoch-(1): [300/600]	Time 0.019 (0.089)	Calc 0.015 (0.084)	Data 0.002 (0.003)	Acc@1 48.000 (45.511)
+2023-10-08 20:37:43,008 [INFO] core.test: Epoch-(1): [400/600]	Time 0.015 (0.091)	Calc 0.013 (0.084)	Data 0.001 (0.004)	Acc@1 48.667 (45.780)
+2023-10-08 20:37:47,686 [INFO] core.test: Epoch-(1): [500/600]	Time 0.017 (0.091)	Calc 0.014 (0.085)	Data 0.001 (0.004)	Acc@1 34.667 (45.781)
+2023-10-08 20:37:52,325 [INFO] core.test: Epoch-(1): [600/600]	Time 0.015 (0.091)	Calc 0.012 (0.086)	Data 0.001 (0.003)	Acc@1 46.667 (45.860)
+2023-10-08 20:37:52,332 [INFO] core.test: Test Accuracy: 45.860	 h: 0.785
+2023-10-08 20:37:52,334 [INFO] core.test: ============ Testing on the test set ============
+2023-10-08 20:37:56,710 [INFO] core.test: Epoch-(2): [100/600]	Time 0.016 (0.087)	Calc 0.012 (0.084)	Data 0.002 (0.001)	Acc@1 48.000 (45.747)
+2023-10-08 20:38:00,918 [INFO] core.test: Epoch-(2): [200/600]	Time 0.269 (0.085)	Calc 0.264 (0.080)	Data 0.003 (0.004)	Acc@1 39.333 (45.727)
+2023-10-08 20:38:05,084 [INFO] core.test: Epoch-(2): [300/600]	Time 0.015 (0.085)	Calc 0.012 (0.080)	Data 0.001 (0.003)	Acc@1 52.667 (45.791)
+2023-10-08 20:38:09,377 [INFO] core.test: Epoch-(2): [400/600]	Time 0.295 (0.085)	Calc 0.292 (0.080)	Data 0.001 (0.003)	Acc@1 37.333 (45.633)
+2023-10-08 20:38:13,667 [INFO] core.test: Epoch-(2): [500/600]	Time 0.232 (0.085)	Calc 0.228 (0.080)	Data 0.001 (0.003)	Acc@1 53.333 (46.003)
+2023-10-08 20:38:17,874 [INFO] core.test: Epoch-(2): [600/600]	Time 0.013 (0.085)	Calc 0.010 (0.078)	Data 0.001 (0.004)	Acc@1 50.667 (45.891)
+2023-10-08 20:38:17,883 [INFO] core.test: Test Accuracy: 45.891	 h: 0.839
+2023-10-08 20:38:17,885 [INFO] core.test: ============ Testing on the test set ============
+2023-10-08 20:38:21,834 [INFO] core.test: Epoch-(3): [100/600]	Time 0.026 (0.078)	Calc 0.023 (0.013)	Data 0.001 (0.063)	Acc@1 46.667 (48.400)
+2023-10-08 20:38:26,176 [INFO] core.test: Epoch-(3): [200/600]	Time 0.016 (0.082)	Calc 0.014 (0.040)	Data 0.001 (0.040)	Acc@1 52.000 (46.640)
+2023-10-08 20:38:30,766 [INFO] core.test: Epoch-(3): [300/600]	Time 0.286 (0.085)	Calc 0.284 (0.056)	Data 0.001 (0.027)	Acc@1 54.000 (46.480)
+2023-10-08 20:38:35,232 [INFO] core.test: Epoch-(3): [400/600]	Time 0.017 (0.086)	Calc 0.015 (0.064)	Data 0.001 (0.020)	Acc@1 42.667 (46.050)
+2023-10-08 20:38:39,961 [INFO] core.test: Epoch-(3): [500/600]	Time 0.189 (0.088)	Calc 0.187 (0.068)	Data 0.001 (0.018)	Acc@1 43.333 (45.917)
+2023-10-08 20:38:44,444 [INFO] core.test: Epoch-(3): [600/600]	Time 0.025 (0.088)	Calc 0.022 (0.070)	Data 0.001 (0.016)	Acc@1 48.667 (45.949)
+2023-10-08 20:38:44,451 [INFO] core.test: Test Accuracy: 45.949	 h: 0.809
+2023-10-08 20:38:44,454 [INFO] core.test: ============ Testing on the test set ============
+2023-10-08 20:38:48,813 [INFO] core.test: Epoch-(4): [100/600]	Time 0.016 (0.087)	Calc 0.013 (0.083)	Data 0.001 (0.001)	Acc@1 46.000 (47.720)
+2023-10-08 20:38:53,778 [INFO] core.test: Epoch-(4): [200/600]	Time 0.012 (0.093)	Calc 0.009 (0.089)	Data 0.001 (0.001)	Acc@1 49.333 (45.727)
+2023-10-08 20:38:57,816 [INFO] core.test: Epoch-(4): [300/600]	Time 0.013 (0.089)	Calc 0.010 (0.085)	Data 0.000 (0.001)	Acc@1 57.333 (45.396)
+2023-10-08 20:39:02,393 [INFO] core.test: Epoch-(4): [400/600]	Time 0.213 (0.089)	Calc 0.211 (0.082)	Data 0.001 (0.005)	Acc@1 44.667 (45.377)
+2023-10-08 20:39:06,768 [INFO] core.test: Epoch-(4): [500/600]	Time 0.315 (0.089)	Calc 0.311 (0.080)	Data 0.001 (0.007)	Acc@1 46.667 (45.680)
+2023-10-08 20:39:11,225 [INFO] core.test: Epoch-(4): [600/600]	Time 0.012 (0.089)	Calc 0.010 (0.081)	Data 0.001 (0.006)	Acc@1 42.000 (45.827)
+2023-10-08 20:39:11,235 [INFO] core.test: Test Accuracy: 45.827	 h: 0.773
+2023-10-08 20:39:11,241 [INFO] core.test: Aver Accuracy: 45.732	 Aver h: 0.357
+2023-10-08 20:39:11,243 [INFO] core.test: ............Testing is end............
